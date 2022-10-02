@@ -1,6 +1,6 @@
 ﻿import win32com.client as win32
 
-outlook = win32.Dispatch('outlool.application') #instancia do outlook
+outlook = win32.Dispatch('outlook.application') #instancia do outlook
 
 mail = outlook.CreateItem(0)
 mail.To = 'christianeolive@hotmail.com'
