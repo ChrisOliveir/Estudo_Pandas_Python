@@ -13,3 +13,28 @@ PANDAS:
 
 '''
 
+import pandas as pd
+from openpyxl import workbook, load_workbook
+tabela = pd.read_excel("Produtos.xlsx")
+
+#PANDAS 
+#atualizar o multiplicador 
+tabela.loc[tabela["Tipo"]=="Serviço","Multiplicador Imposto"] = 1.5
+
+
+# fazer a conta do preço base reais 
+tabela["Preço Base Reais"] = tabela["Multiplicador Imposto"] * tabela["Preço Base Original"]
+#print(tabela)
+
+tabela.to_excel("ProdutosPandas.xlsx", index = False)
+
+#OPENPYXL
+planilha = load_workbook("Produtos.xlsx")
+aba_ativa = planilha.active
+
+for celula in aba_ativa["C"]:
+    if celula.value == "Serviço":
+        linha = celula.row
+        aba_ativa[f"D{linha}"] = 1.5  
+
+planilha.save("ProdutosOpenPy.xlsx")
