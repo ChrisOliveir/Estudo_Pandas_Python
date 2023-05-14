@@ -21,5 +21,5 @@ vendas_df = vendas_df.merge(clientes_df, on="ID Cliente")
 #METODO .VALUE_COUNTS() para contar quantas vezes cada valor do dataframe aparece
 
 frequencia_clientes = vendas_df['E-mail'].value_counts()
-print(frequencia_clientes)
+print(vendas_df)
 
